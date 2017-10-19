@@ -5,6 +5,9 @@ namespace Office365\PHP\Client\OutlookServices;
 
 
 use Office365\PHP\Client\Runtime\ResourcePathEntity;
+use Office365\PHP\Client\Runtime\InvokePostMethodQuery;
+use Office365\PHP\Client\Runtime\UpdateEntityQuery;
+use Office365\PHP\Client\Runtime\OperationParameterCollection;
 
 class MailFolder extends OutlookEntity
 {
@@ -31,13 +34,13 @@ class MailFolder extends OutlookEntity
     }
 
     /**
-     * @return FolderCollection
+     * @return MailFolderCollection
      */
     public function getChildFolders()
     {
         if (!$this->isPropertyAvailable("ChildFolders")) {
             $this->setProperty("ChildFolders",
-                new FolderCollection($this->getContext(), new ResourcePathEntity(
+                new MailFolderCollection($this->getContext(), new ResourcePathEntity(
                     $this->getContext(),
                     $this->getResourcePath(),
                     "ChildFolders"
@@ -45,5 +48,18 @@ class MailFolder extends OutlookEntity
         }
 
         return $this->getProperty("ChildFolders");
+    }
+    
+    public function renameFolder($name){
+        $this->setProperty('DisplayName',$name);
+        $qry = new UpdateEntityQuery($this);
+        $this->getContext()->addQuery($qry,$this);
+    }
+    
+    public function moveFolder($destinationId){
+        $payload = new OperationParameterCollection();
+        $payload->add("DestinationId",$destinationId);
+        $qry = new InvokePostMethodQuery($this,"Move",null,$payload);
+        $this->getContext()->addQuery($qry);
     }
 }

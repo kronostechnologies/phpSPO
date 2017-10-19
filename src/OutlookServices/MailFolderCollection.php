@@ -6,7 +6,7 @@ namespace Office365\PHP\Client\OutlookServices;
 use Office365\PHP\Client\Runtime\CreateEntityQuery;
 use Office365\PHP\Client\Runtime\ClientObjectCollection;
 
-class FolderCollection extends ClientObjectCollection
+class MailFolderCollection extends ClientObjectCollection
 {
 
     /**
