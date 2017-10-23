@@ -1,5 +1,5 @@
 {
-    "name": "gtony/php-spo",
+    "name": "kronostechnologies/php-spo",
     "description": "The library provides a Office 365 REST client for PHP. It allows to performs CRUD operations against Office 365 resources via an REST/OData based API",
     "type": "library",
     "keywords": ["sharepoint", "office365", "rest", "curl", "api"],
@@ -9,7 +9,7 @@
             "email": "vvgrem@gmail.com"
         }
     ],
-    "license": "LGPL-3.0+",
+    "license": "MIT",
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4",
