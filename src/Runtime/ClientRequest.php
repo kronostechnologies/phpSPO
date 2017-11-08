@@ -54,12 +54,18 @@ abstract class ClientRequest
     protected $requestStatus;
 
 
+    /*
+     * @var array
+     */
+    protected $customHeaders;
+
     /**
      * ClientRequest constructor.
      * @param ClientRuntimeContext $context
      */
     public function __construct(ClientRuntimeContext $context)
     {
+        $this->customHeaders = array();
         $this->context = $context;
         $this->beforeExecute = new EventHandler();
         $this->afterExecute = new EventHandler();
@@ -213,6 +219,17 @@ abstract class ClientRequest
             throw new RequestException($response->getContent(),$response->getStatusCode());
         }
         return true;
+    }
+
+    /**
+     * @param $customHeaders
+     */
+    public function setCustomHeaders($header , $value) {
+        $this->customHeaders[$header] = $value;
+    }
+
+    public function getQueries(){
+        return $this->queries;
     }
 
 }

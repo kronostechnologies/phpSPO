@@ -83,4 +83,8 @@ class ODataQueryOptions
      * @var string
      */
     public $Search;
+
+    public $DeltaToken;
+    
+    public $SkipToken;
 }

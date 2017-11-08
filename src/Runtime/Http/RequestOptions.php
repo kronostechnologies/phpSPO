@@ -70,6 +70,8 @@ class RequestOptions
             array_keys($this->Headers),
             array_values($this->Headers)
         );
+        array_push($headers, "Prefer:odata.maxpagesize=1000");
+        return $headers;
     }
 
 
