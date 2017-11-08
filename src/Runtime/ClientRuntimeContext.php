@@ -175,6 +175,4 @@ class ClientRuntimeContext
         }
         return $this->pendingRequest;
     }
-
-
 }
