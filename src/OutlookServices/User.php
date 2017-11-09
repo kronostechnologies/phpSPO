@@ -132,6 +132,9 @@ class User extends OutlookEntity
         if ($this->getContext()->getApiVersion() == Office365Version::V2) {
             return "MailFolders";
         }
+        if ($this->getContext()->getApiVersion() == Office365Version::Beta) {
+            return "MailFolders";
+        }
         throw new Exception("Unknown API version '" . $this->getContext()->getApiVersion() . "'");
     }
     /**
