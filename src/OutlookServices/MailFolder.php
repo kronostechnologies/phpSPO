@@ -3,11 +3,10 @@
 
 namespace Office365\PHP\Client\OutlookServices;
 
-
 use Office365\PHP\Client\Runtime\ResourcePathEntity;
 use Office365\PHP\Client\Runtime\InvokePostMethodQuery;
 use Office365\PHP\Client\Runtime\UpdateEntityQuery;
-use Office365\PHP\Client\Runtime\OperationParameterCollection;
+use Office365\PHP\Client\Runtime\ClientValueObject;
 
 class MailFolder extends OutlookEntity
 {
@@ -57,8 +56,8 @@ class MailFolder extends OutlookEntity
     }
     
     public function moveFolder($destinationId){
-        $payload = new OperationParameterCollection();
-        $payload->add("DestinationId",$destinationId);
+        $payload = new ClientValueObject();
+        $payload->setProperty("DestinationId",$destinationId);
         $qry = new InvokePostMethodQuery($this,"Move",null,$payload);
         $this->getContext()->addQuery($qry);
     }
