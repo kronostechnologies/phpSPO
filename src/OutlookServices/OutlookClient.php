@@ -28,8 +28,6 @@ class OutlookClient extends ClientRuntimeContext
         parent::__construct($this->serviceRootUrl, $authContext, new JsonFormat(ODataMetadataLevel::Verbose), $version);
     }
 
-
-
     /**
      * Submits query to Outlook REST/OData service
      */
@@ -41,10 +39,6 @@ class OutlookClient extends ClientRuntimeContext
         parent::executeQuery();
     }
 
-
-
-
-
     private function prepareOutlookServicesRequest(RequestOptions $request,ClientAction $query)
     {
         //set data modification headers
@@ -55,8 +49,6 @@ class OutlookClient extends ClientRuntimeContext
         }
     }
 
-
-
     /**
      * @return User
      */
@@ -65,8 +57,7 @@ class OutlookClient extends ClientRuntimeContext
             $this->me = new User($this,new ResourcePathEntity($this,null,"me"));
         return $this->me;
     }
-
-
+	
     /**
      * @return UserCollection
      */
@@ -76,7 +67,6 @@ class OutlookClient extends ClientRuntimeContext
         return $this->users;
     }
 
-
     /**
      * @return GroupCollection
      */
@@ -85,7 +75,6 @@ class OutlookClient extends ClientRuntimeContext
             $this->groups = new GroupCollection($this,new ResourcePathEntity($this,null,"Groups"));
         return $this->groups;
     }
-
 
     /**
      * @var string
@@ -102,12 +91,10 @@ class OutlookClient extends ClientRuntimeContext
      */
     private $me;
 
-
     /**
      * @var UserCollection
      */
     private $users;
-
 
     /**
      * @var GroupCollection
