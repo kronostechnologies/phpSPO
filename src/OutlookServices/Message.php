@@ -77,6 +77,17 @@ class Message extends Item
         $this->getContext()->addQuery($qry);
     }
 
+    public function flag($flagged)
+	{
+		$flag = [
+			"PropertyId" => "Integer 0x1090",
+			"Value" => $flagged? "2" : "0"
+		];
+		$this->setProperty("SingleValueExtendedProperties", [$flag]);
+		$qry = new UpdateEntityQuery($this);
+		$this->getContext()->addQuery($qry);
+	}
+
     /**
      * Marks a message as important/unimportant
      * @param int $importance importance level (1,2,3)
@@ -236,5 +247,10 @@ class Message extends Item
      * @var array
      */
     public $Extensions;
+
+	/**
+	 * @var array[];
+	 */
+	public $SingleValueExtendedProperties;
 
 }
