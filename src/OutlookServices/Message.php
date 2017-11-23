@@ -72,16 +72,27 @@ class Message extends Item
         $this->getContext()->addQuery($qry);
     }
 
-    public function flag($flagged)
+    public function star($starred)
 	{
-		$flag = [
+		$star = [
 			"PropertyId" => "Integer 0x1090",
-			"Value" => $flagged? "2" : "0"
+			"Value" => $starred? "2" : "0"
 		];
-		$this->setProperty("SingleValueExtendedProperties", [$flag]);
+		$this->setProperty("SingleValueExtendedProperties", [$star]);
 		$qry = new UpdateEntityQuery($this);
 		$this->getContext()->addQuery($qry);
 	}
+
+    public function answer($answered)
+    {
+        $answer = [
+            "PropertyId" => "Integer 0x0E17",
+            "Value" => $answered? "512" : "0"
+        ];
+        $this->setProperty("SingleValueExtendedProperties", [$answer]);
+        $qry = new UpdateEntityQuery($this);
+        $this->getContext()->addQuery($qry);
+    }
 
     /**
      * Marks a message as important/unimportant
