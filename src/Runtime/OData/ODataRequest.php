@@ -79,7 +79,7 @@ class ODataRequest extends ClientRequest
     /**
      * @param string $response
      * @param ISchemaType|ClientResult $resultObject
-     * @throws Exception
+     * @throws ApiException
      */
     public function processResponse($response, $resultObject)
     {
@@ -100,14 +100,14 @@ class ODataRequest extends ClientRequest
     /**
      * @param string $response
      * @return mixed
-     * @throws Exception
+     * @throws ApiException
      */
     private function parseJsonResponse($response)
     {
         $error = array();
         $payload = json_decode($response);
         if ($this->validateResponse($payload, $error) == false) {
-            throw new Exception($error['Message']);
+            throw new ApiException($error['Message'], $error['Code']);
         }
         return $payload;
     }
@@ -228,7 +228,18 @@ class ODataRequest extends ClientRequest
             } else {
                 $message = "Unknown error";
             }
+
+            if (is_string($payload->error->code)) {
+                $code = $payload->error->code;
+            } elseif (is_object($payload->error->code)) {
+                $code = $payload->error->code->value;
+            } else {
+                $code = "Unknown";
+            }
+
             $error['Message'] = $message;
+            $error['Code'] = $code;
+            
             return false;
         }
         return true;
