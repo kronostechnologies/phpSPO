@@ -71,6 +71,9 @@ class ODataRequest extends ClientRequest
                 $resultObject = $this->resultObjects[$qry->getId()];
                 $this->processResponse($response, $resultObject);
                 unset($this->resultObjects[$qry->getId()]);
+            } else if ($this->responsePayloadFormat == FormatType::Json &&
+                (strpos($response, "\"error\"") !== false || strpos($response, "\"Error\"") !== false)) {
+                $payload = $this->parseJsonResponse($response);
             }
         }
     }
