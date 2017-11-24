@@ -2,8 +2,10 @@
 
 
 namespace Office365\PHP\Client\OutlookServices;
+use Office365\PHP\Client\OutlookServices\AttachmentCollection;
 use Office365\PHP\Client\Runtime\ClientValueObject;
 use Office365\PHP\Client\Runtime\InvokePostMethodQuery;
+use Office365\PHP\Client\Runtime\ResourcePathEntity;
 use Office365\PHP\Client\Runtime\UpdateEntityQuery;
 
 
@@ -119,6 +121,22 @@ class Message extends Item
         $this->Attachments[] = $attachment;
         return $attachment;
     }
+
+	/**
+	 * @return AttachmentCollection
+	 */
+	public function getAttachments()
+	{
+		if (!$this->isPropertyAvailable("Attachments")) {
+			$this->setProperty("Attachments",
+				new AttachmentCollection($this->getContext(), new ResourcePathEntity(
+					$this->getContext(),
+					$this->getResourcePath(),
+					"Attachments"
+				)));
+		}
+		return $this->getProperty("Attachments");
+	}
 
 
     /**
