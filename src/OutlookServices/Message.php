@@ -114,6 +114,7 @@ class Message extends Item
         $this->Attachments[] = $attachment;
         return $attachment;
     }
+
     /**
      * The FileAttachment and ItemAttachment attachments for the message.
      * @var array
