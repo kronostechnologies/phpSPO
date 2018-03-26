@@ -101,9 +101,19 @@ class Message extends Item
         $this->getContext()->addQuery($qry);
     }
 
-	public function setDate($date){
+    public function setReceivedDateTime($date){
+        $answer = [
+            "PropertyId" => "SystemTime 0xe06",
+            "Value" => $date
+        ];
+        $this->setProperty("SingleValueExtendedProperties", [$answer]);
+        $qry = new UpdateEntityQuery($this);
+        $this->getContext()->addQuery($qry);
+    }
+
+	public function setSentDateTime($date){
 		$answer = [
-			"PropertyId" => "SystemTime 0xe06",
+			"PropertyId" => "SystemTime 0x39",
 			"Value" => $date
 		];
 		$this->setProperty("SingleValueExtendedProperties", [$answer]);
