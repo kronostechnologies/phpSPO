@@ -9,7 +9,6 @@ use Office365\Runtime\ClientValue;
 
 
 
-
 /**
  * Specifies a Collaborative Application Markup Language (CAML) query on a list or joined lists.
  */

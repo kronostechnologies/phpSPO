@@ -37,9 +37,8 @@ class AttachmentCollection extends ClientObjectCollection
 		if (!$this->isPropertyAvailable("Attachments")) {
 			$this->setProperty("Attachments",
 				new $attachmentType($this->getContext(), new ResourcePath(
-					$this->getContext(),
-					$this->getResourcePath(),
-					$attachmentId
+                    $attachmentId,
+					$this->getResourcePath()
 				)));
 		}
 		return $this->getProperty("Attachments");

@@ -222,13 +222,17 @@ abstract class ClientRequest
     }
 
     /**
-     * @param $customHeaders
+     * @param string $header
+     * @param string $value
      */
     public function setCustomHeaders($header , $value) {
         $this->customHeaders[$header] = $value;
     }
 
-    public function getQueries(){
+    /**
+     * @return ClientAction[]
+     */
+    public function getQueries() {
         return $this->queries;
     }
 
