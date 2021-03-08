@@ -7,8 +7,6 @@ use Office365\PHP\Client\Runtime\HttpMethod;
 
 class RequestOptions
 {
-
-
     /**
      * RequestOptions constructor.
      * @param $url string
@@ -28,6 +26,8 @@ class RequestOptions
         $this->Verbose = false;
         $this->SSLVersion = null;
         $this->StreamHandle = null;
+        $this->TimeOut = null;
+        $this->ConnectTimeOut = null;
     }
 
     public function toArray()
@@ -68,6 +68,21 @@ class RequestOptions
         return $headers;
     }
 
+    /**
+     * @param int $optTimeOut
+     */
+    public function setTimeout($optTimeOut)
+    {
+        $this->TimeOut = $optTimeOut;
+    }
+
+    /**
+     * @param int $connectTimeOut
+     */
+    public function setConnectTimeout($connectTimeOut)
+    {
+        $this->ConnectTimeOut = $connectTimeOut;
+    }
 
     /**
      * @var string
@@ -135,4 +150,13 @@ class RequestOptions
      */
     public $StreamHandle;
 
+    /**
+     * @var ?int
+     */
+    public $TimeOut;
+
+    /**
+     * @var ?int
+     */
+    public $ConnectTimeOut;
 }

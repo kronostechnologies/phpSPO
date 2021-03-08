@@ -131,6 +131,14 @@ class Requests
         if(!is_null($options->UserCredentials))
             curl_setopt($ch,CURLOPT_USERPWD, $options->UserCredentials->toString());
 
+        // connect timeouts
+        if (!is_null($options->TimeOut)) {
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, $options->TimeOut);
+        }
+        if (!is_null($options->ConnectTimeOut)) {
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, $options->ConnectTimeOut);
+        }
+
         return $ch;
     }
 
