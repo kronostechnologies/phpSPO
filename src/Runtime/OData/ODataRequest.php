@@ -62,6 +62,11 @@ class ODataRequest extends ClientRequest
                 }
             }
         }
+        if($this->customHeaders){
+            foreach($this->customHeaders as $header => $value){
+                $request->ensureHeader($header, $value);
+            }
+        }
         return $request;
     }
 
