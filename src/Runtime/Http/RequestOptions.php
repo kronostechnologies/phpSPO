@@ -30,6 +30,7 @@ class RequestOptions
         $this->StreamHandle = null;
         $this->Data = $data;
         $this->ConnectTimeout = null;
+        $this->Timeout = null;
         $this->TransferEncodingChunkedAllowed = false;
         $this->FollowLocation = false;
     }
@@ -155,6 +156,11 @@ class RequestOptions
      */
     public $ConnectTimeout;
 
+    /**
+     * Set maximum time the request is allowed to take in second
+     * @var ?int
+     */
+    public $Timeout;
 
     /**
      * @var bool
