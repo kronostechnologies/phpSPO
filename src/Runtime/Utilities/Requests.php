@@ -130,6 +130,8 @@ class Requests
             curl_setopt($ch,CURLOPT_HTTPAUTH, $options->AuthType);
         if(!is_null($options->UserCredentials))
             curl_setopt($ch,CURLOPT_USERPWD, $options->UserCredentials->toString());
+        if (!is_null($options->ConnectTimeout))
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $options->ConnectTimeout);
 
         return $ch;
     }

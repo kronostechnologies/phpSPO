@@ -7,8 +7,6 @@ use Office365\PHP\Client\Runtime\HttpMethod;
 
 class RequestOptions
 {
-
-
     /**
      * RequestOptions constructor.
      * @param $url string
@@ -28,6 +26,7 @@ class RequestOptions
         $this->Verbose = false;
         $this->SSLVersion = null;
         $this->StreamHandle = null;
+        $this->ConnectTimeout = null;
     }
 
     public function toArray()
@@ -67,7 +66,6 @@ class RequestOptions
         array_push($headers, "Prefer:odata.maxpagesize=1000");
         return $headers;
     }
-
 
     /**
      * @var string
@@ -135,4 +133,8 @@ class RequestOptions
      */
     public $StreamHandle;
 
+    /**
+     * @var int|null
+     */
+    public $ConnectTimeout;
 }
