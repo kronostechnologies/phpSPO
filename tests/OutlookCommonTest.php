@@ -9,30 +9,27 @@ require_once('OutlookServicesTestCase.php');
 
 class OutlookCommonTest extends OutlookServicesTestCase
 {
-
-
-    public function testMyDetails(){
+    public function testMyDetails()
+    {
         $me = self::$context->getMe();
         self::$context->load($me);
         self::$context->executeQuery();
         self::assertNotNull($me->MailboxGuid);
     }
 
-    public function testGetCalendars(){
+    public function testGetCalendars()
+    {
         $calendars = self::$context->getMe()->getCalendars();
         self::$context->load($calendars);
         self::$context->executeQuery();
         self::assertNotNull($calendars->getServerObjectIsNull());
     }
 
-
-
     /*public function testGetSubscriptions(){
         $subscriptions = self::$context->getMe()->getSubscriptions();
         self::$context->load($subscriptions);
         self::$context->executeQuery();
     }*/
-
 
     /*public function testDeleteAllEvents(){
         $events = self::$context->getMe()->getEvents();
@@ -59,12 +56,4 @@ class OutlookCommonTest extends OutlookServicesTestCase
             self::$context->executeQuery();
         }
     }*/
-
-
-
-
-
-
-
-
 }

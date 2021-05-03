@@ -8,8 +8,8 @@ use SharePointTestCase;
 
 class ResourcePathTest extends SharePointTestCase
 {
-
-    function testCreatePath(){
+    function testCreatePath()
+    {
         $url ="web/RoleAssignments";
         $path = ODataPathBuilder::fromUrl(self::$context,$url);
         self::assertNotNull($path->ServerObjectIsNull);
@@ -17,5 +17,4 @@ class ResourcePathTest extends SharePointTestCase
         self::assertNotNull($path->getParent()->ServerObjectIsNull);
         self::assertEquals("web",$path->getParent()->toString());
     }
-
 }

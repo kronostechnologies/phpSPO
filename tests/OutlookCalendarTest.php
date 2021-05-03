@@ -105,10 +105,4 @@ class OutlookCalendarTest extends OutlookServicesTestCase
         $deletedEvent = $events->getItemById($event->getProperty("Id"));
         self::assertNull($deletedEvent);
     }
-
-
-
-
-
-
 }

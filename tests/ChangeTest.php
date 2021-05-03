@@ -3,8 +3,6 @@
 use Office365\PHP\Client\SharePoint\ChangeQuery;
 use Office365\PHP\Client\SharePoint\ChangeType;
 
-
-
 class ChangeTest extends SharePointTestCase
 {
     /**
@@ -12,14 +10,14 @@ class ChangeTest extends SharePointTestCase
      */
     private static $targetList;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         $listTitle = "Contacts";
         self::$targetList = ListExtensions::ensureList(self::$context->getWeb(), $listTitle, \Office365\PHP\Client\SharePoint\ListTemplateType::TasksWithTimelineAndHierarchy);
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         //self::$targetList->deleteObject();
         //self::$context->executeQuery();
@@ -50,7 +48,8 @@ class ChangeTest extends SharePointTestCase
     }
 
 
-    function testLoadWebChanges(){
+    function testLoadWebChanges()
+    {
 
         $ctx = self::$targetList->getContext();
         $targetWeb = self::$targetList->getParentWeb();

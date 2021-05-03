@@ -13,8 +13,8 @@ require_once('OutlookServicesTestCase.php');
 
 class OutlookMailTest extends OutlookServicesTestCase
 {
-
-    public function testCreateDraftMessage(){
+    public function testCreateDraftMessage()
+    {
 
         $currentUser = self::$context->getMe();
         self::$context->load($currentUser);
@@ -30,8 +30,6 @@ class OutlookMailTest extends OutlookServicesTestCase
         self::assertTrue($message->IsDraft);
         return $message;
     }
-
-
 
     /**
      * @depends testCreateDraftMessage
@@ -54,7 +52,6 @@ class OutlookMailTest extends OutlookServicesTestCase
         self::assertTrue(true);
     }
 
-
     /**
      * @depends testCreateDraftMessage
      * @param Message $existingMessage
@@ -75,8 +72,8 @@ class OutlookMailTest extends OutlookServicesTestCase
         self::assertTrue(true);
     }
 
-
-    private function getLink(OutlookEntity $entity){
+    private function getLink(OutlookEntity $entity)
+    {
         /*return array(
             "Id" => $entity->Id,
             "@odata.type" => "#Microsoft.OutlookServices.Message"
@@ -86,7 +83,6 @@ class OutlookMailTest extends OutlookServicesTestCase
         $entity->addAnnotation("type","#Microsoft.OutlookServices.Message");
         return $entity;
     }
-
 
     /**
      * @depends testCreateDraftMessage
@@ -103,15 +99,12 @@ class OutlookMailTest extends OutlookServicesTestCase
         self::assertTrue($message->getProperty("IsRead"));
     }
 
-
-
-
-
     /**
      * @depends testCreateDraftMessage
      * @param Message $message
      */
-    public function testGetMessages(Message $message){
+    public function testGetMessages(Message $message)
+    {
         //verify
         $messages = self::$context->getMe()->getMessages();
         self::$context->load($messages);
@@ -123,7 +116,6 @@ class OutlookMailTest extends OutlookServicesTestCase
         $foundMessage = $messages->getItemById($message->Id);
         self::assertNotNull($foundMessage);
     }
-
 
     /**
      * @depends testCreateDraftMessage
@@ -139,17 +131,16 @@ class OutlookMailTest extends OutlookServicesTestCase
         self::assertTrue(true);
     }
 
-
     /**
      * @depends testCreateDraftMessage
      * @param Message $message
      */
-    public function testSendEmail(Message $message){
+    public function testSendEmail(Message $message)
+    {
         self::$context->getMe()->sendEmail($message,false);
         self::$context->executeQuery();
         self::assertTrue(true);
     }
-
 
     /**
      * @depends testCreateDraftMessage
@@ -160,7 +151,6 @@ class OutlookMailTest extends OutlookServicesTestCase
         $message->replyAll("Sounds great!");
         self::$context->executeQuery();
     }*/
-
 
     /**
      * @depends testCreateDraftMessage
@@ -177,6 +167,4 @@ class OutlookMailTest extends OutlookServicesTestCase
         $deletedMessage = $messages->getItemById($message->getProperty("Id"));
         self::assertNull($deletedMessage);
     }
-
-
 }

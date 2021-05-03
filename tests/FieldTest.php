@@ -12,14 +12,14 @@ class FieldTest extends SharePointTestCase
      */
     private static $targetList;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         $listTitle = "Contacts_" . rand(1, 100000);
         self::$targetList = ListExtensions::ensureList(self::$context->getWeb(), $listTitle, \Office365\PHP\Client\SharePoint\ListTemplateType::Contacts);
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$targetList->deleteObject();
         self::$context->executeQuery();
@@ -65,11 +65,11 @@ class FieldTest extends SharePointTestCase
      */
     public function testDeleteColumn(Field $fieldToDelete)
     {
-        
+
         $fieldId = $fieldToDelete->getProperty('Id');
         $fieldToDelete->deleteObject();
         self::$context->executeQuery();
-        
+
         $result =  self::$context->getSite()->getRootWeb()->getFields()->filter("Id eq '$fieldId'");
         self::$context->load($result);
         self::$context->executeQuery();

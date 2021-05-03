@@ -19,5 +19,10 @@
         "psr-4": {
             "Office365\\PHP\\Client\\": "src/"
         }
+    },
+    "require-dev": {
+        "phpcompatibility/php-compatibility": "dev-master",
+        "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
+        "phpunit/phpunit": "^8.5"
     }
 }

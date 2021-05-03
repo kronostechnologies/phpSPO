@@ -10,14 +10,14 @@ class FileTest extends SharePointTestCase
 
 
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         $listTitle = "Documents_" . rand(1, 100000);
         self::$targetList = ListExtensions::ensureList(self::$context->getWeb(), $listTitle, \Office365\PHP\Client\SharePoint\ListTemplateType::DocumentLibrary);
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$targetList->deleteObject();
         self::$context->executeQuery();
@@ -25,7 +25,8 @@ class FileTest extends SharePointTestCase
     }
 
 
-    public function testUploadFiles(){
+    public function testUploadFiles()
+    {
         $localPath = "../examples/data/";
         $searchPrefix = $localPath . '*.*';
         foreach(glob($searchPrefix) as $filename) {

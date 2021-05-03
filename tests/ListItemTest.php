@@ -13,23 +13,20 @@ class ListItemTest extends SharePointTestCase
      */
     private static $targetList;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         $listTitle = ListItemExtensions::createUniqueName("Orders");
         self::$targetList = ListExtensions::ensureList(self::$context->getWeb(), $listTitle, \Office365\PHP\Client\SharePoint\ListTemplateType::Tasks);
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$targetList->deleteObject();
         self::$context->executeQuery();
         parent::tearDownAfterClass();
     }
 
-
-    
-    
     public function testItemsCount()
     {
         $itemsCount = self::$targetList->getProperty("ItemCount");
@@ -38,8 +35,6 @@ class ListItemTest extends SharePointTestCase
         self::$context->executeQuery();
         $this->assertEquals($itemsCount, $items->getCount());
     }
-
-
 
     public function testCreateListItems()
     {
@@ -59,7 +54,6 @@ class ListItemTest extends SharePointTestCase
         return $item;
     }
 
-
     /**
      * @depends testCreateListItems
      * @param ListItem $listItem
@@ -77,7 +71,6 @@ class ListItemTest extends SharePointTestCase
         self::assertNotNull($attachment->getServerRelativeUrl());
     }
 
-
     /**
      * @depends testCreateListItems
      * @param ListItem $listItem
@@ -94,8 +87,6 @@ class ListItemTest extends SharePointTestCase
         self::assertNotNull($predecessorsId);
     }
 
-
-
     public function testQueryOptionsForUserField()
     {
         $items = self::$targetList->getItems(CamlQuery::createAllItemsQuery())
@@ -110,7 +101,6 @@ class ListItemTest extends SharePointTestCase
             self::assertNotNull($assignedTo->Title);
         }
     }
-
 
     public function testQueryOptionsForMultiUserField()
     {
@@ -130,8 +120,6 @@ class ListItemTest extends SharePointTestCase
         }
     }
 
-
-   
     public function testDeleteListItems()
     {
         $ctx = self::$targetList->getContext();
@@ -147,6 +135,4 @@ class ListItemTest extends SharePointTestCase
         $itemsCount = self::$targetList->getProperty("ItemCount");
         $this->assertEquals($itemsCount, 0);
     }
-
-    
 }

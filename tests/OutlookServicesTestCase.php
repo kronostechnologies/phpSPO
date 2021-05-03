@@ -12,15 +12,14 @@ abstract class OutlookServicesTestCase extends \PHPUnit\Framework\TestCase
      */
     protected static $context;
 
-
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         global $Settings;
         $authCtx = new NetworkCredentialContext($Settings["UserName"],$Settings["Password"]);
         self::$context = new OutlookClient($authCtx);
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$context = NULL;
     }

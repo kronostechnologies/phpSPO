@@ -11,14 +11,14 @@ class ViewTest extends SharePointTestCase
      */
     private static $targetList;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         $listTitle = ListItemExtensions::createUniqueName("Orders");
         self::$targetList = ListExtensions::ensureList(self::$context->getWeb(), $listTitle, \Office365\PHP\Client\SharePoint\ListTemplateType::Tasks);
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$targetList->deleteObject();
         self::$context->executeQuery();
@@ -49,9 +49,4 @@ class ViewTest extends SharePointTestCase
         self::$context->executeQuery();
         $this->assertEquals(1, $result->getCount());
     }
-
-
-    
-    
-
 }

@@ -11,7 +11,7 @@ abstract class SharePointTestCase extends \PHPUnit\Framework\TestCase
      */
     protected static $context;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         global $Settings;
         global  $AppSettings;
@@ -20,11 +20,9 @@ abstract class SharePointTestCase extends \PHPUnit\Framework\TestCase
         $authCtx->acquireTokenForUser($Settings['UserName'],$Settings['Password']);
         //$authCtx->acquireTokenForApp($AppSettings['ClientId'],$AppSettings['ClientSecret'],$AppSettings['RedirectUrl']);
         self::$context = new ClientContext($Settings['Url'],$authCtx);
-
-
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$context = NULL;
     }

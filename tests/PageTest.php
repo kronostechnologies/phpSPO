@@ -18,7 +18,7 @@ class PageTest extends SharePointTestCase
      */
     private static $targetList;
 
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         parent::setUpBeforeClass();
         $listTitle = ListItemExtensions::createUniqueName("Wiki");
@@ -39,13 +39,12 @@ class PageTest extends SharePointTestCase
 
     }
 
-    public static function tearDownAfterClass()
+    public static function tearDownAfterClass(): void
     {
         self::$targetList->deleteObject();
         self::$context->executeQuery();
         parent::tearDownAfterClass();
     }
-
 
     public function testUndoCheckoutPage(){
 
@@ -55,7 +54,6 @@ class PageTest extends SharePointTestCase
         $this->assertEquals(\Office365\PHP\Client\SharePoint\CheckOutType::None,self::$targetPage->getCheckOutType());
     }
 
-
     public function testCheckOutPage(){
         self::$targetPage->checkOut();
         self::$context->load(self::$targetPage);
@@ -63,14 +61,12 @@ class PageTest extends SharePointTestCase
         $this->assertEquals(\Office365\PHP\Client\SharePoint\CheckOutType::Online,self::$targetPage->getCheckOutType());
     }
 
-
     public function testCheckInPage(){
         self::$targetPage->checkIn("Modified.");
         self::$context->load(self::$targetPage);
         self::$context->executeQuery();
         $this->assertEquals(\Office365\PHP\Client\SharePoint\CheckOutType::None,self::$targetPage->getCheckOutType());
     }
-
 
     public function testListWebParts()
     {
@@ -80,7 +76,6 @@ class PageTest extends SharePointTestCase
         self::$context->executeQuery();
         $this->assertNotNull($webParts->getServerObjectIsNull());
     }
-
 
     /*public function testAddWebPart()
     {
@@ -93,14 +88,11 @@ class PageTest extends SharePointTestCase
     "<PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>" .
 "</WebPart>";
 
-        
+
         $manager = self::$targetPage->getLimitedWebPartManager(PersonalizationScope::Shared);
         $webPartDef = $manager->importWebPart($webPartXml);
         self::$context->executeQuery();
         $type = $webPartDef->getEntityTypeName();
         $this->assertEquals($type, "SP.WebParts.WebPartDefinition");
     }*/
-
-
-
 }
